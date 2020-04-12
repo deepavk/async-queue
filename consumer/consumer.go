@@ -7,8 +7,6 @@ import (
 	"sync"
 )
 
-var lock sync.RWMutex
-
 const workerCount = 10
 
 type Consumer struct {
@@ -23,16 +21,12 @@ func NewConsumer(broker broker.QueueBackendManager) *Consumer {
 
 func (c *Consumer) RegisterTasks(tasks map[string]interface{}) {
 	for key, value := range tasks {
-		lock.Lock()
 		c.TaskRegister[key] = value
-		lock.Unlock()
 	}
 }
 
 func (c *Consumer) GetTask(key string) interface{} {
-	lock.RLock()
 	task, ok := c.TaskRegister[key]
-	lock.RUnlock()
 	if !ok {
 		return nil
 	}
