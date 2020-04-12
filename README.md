@@ -2,9 +2,8 @@ Implementation of an asynchronous task queue
 
 
 **Broker**
-* The broker and allows implementation of any backend - 
- connection to a backend (sqs,redis), enqueue/dequeue operations
-* The broker provides the interfaces required by the producer and consumer to interact with queue backends
+The broker allows connection to a backend (sqs,redis), enqueue/dequeue operations.
+It defines the interfaces required by the producer and consumer to interact with queue backends
 
 **Tasks:**
 Tasks have to be defined in a task map and registered at the consumer.
